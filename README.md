@@ -4,12 +4,14 @@ Monitor the remaining GitHub Copilot premium model quota directly from the VS Co
 
 ## Features
 
-- **Status bar widget** showing the remaining premium quota as a percentage with colour-coded urgency levels (critical / warning / normal).
-- **Click** the widget to open a quick-action menu: Refresh, Sign in, Sign out, Open Settings.
+- **Status bar widget** showing the remaining premium quota as a percentage (with Copilot icon) and colour-coded urgency levels (critical / warning / normal).
+- **Single click** the widget to open a quick-action menu: Refresh, Sign in, Sign out, Open Settings.
+- **Double click** the widget to refresh the quota immediately.
 - **Configurable alert thresholds and colours**: set your own *critical* (default 10 %) and *warning* (default 30 %) percentage thresholds and colours via `Settings → Extensions → GitHub Copilot Premium Quota Monitor`.
 - **Automatic background refresh** (default every 5 minutes, configurable 1–60 min).
 - **Secure authentication** via GitHub OAuth Device Flow; token stored in VS Code's Secret Storage (OS keychain).
 - **Tooltip** with remaining quota %, interactions, and renewal date.
+- **Multilingual**: English, German, Spanish, French, Italian, Japanese, Portuguese, Russian, Albanian, Turkish, Chinese (Simplified).
 
 ## Requirements
 
