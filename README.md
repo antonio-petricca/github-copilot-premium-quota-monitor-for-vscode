@@ -46,7 +46,12 @@ A GitHub account with an active Copilot subscription is required.
 
 Based on the [IntelliJ plugin](https://github.com/antonio-petricca/github-copilot-premium-quota-monitor-for-ij).
 
-Special thanks to contributors: [Fabio Pelliccia](https://github.com/Fabio-Pelliccia), [Massimo Ambrosino](https://github.com/mambrosino), [Vincenzo Pimpinella](https://github.com/Enzo88).
+Special thanks to contributors:
+
+- [Fabio Miconi](https://github.com/miconif)
+- [Fabio Pelliccia](https://github.com/Fabio-Pelliccia)-
+- [Massimo Ambrosino](https://github.com/mambrosino)
+- [Vincenzo Pimpinella](https://github.com/Enzo88).
 
 ## License
 
