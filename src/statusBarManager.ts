@@ -31,12 +31,17 @@ import { t, tf } from './i18n';
 /** Maximum interval (ms) between two clicks to be treated as a double-click. */
 const DOUBLE_CLICK_MS = 400;
 const STATUSBAR_ICON = '$(dashboard)';
+const BLINK_STEP_MS = 400;
+const BLINK_STEPS = 3;
+const BLINK_DARK_GRAY = '#555555';
 
 export class StatusBarManager {
     private item: vscode.StatusBarItem;
     private refreshTimer: NodeJS.Timeout | undefined;
+    private blinkTimer: NodeJS.Timeout | undefined;
     private singleClickTimer: NodeJS.Timeout | undefined;
     private lastClickAt = 0;
+    private currentColor: vscode.ThemeColor | string | undefined;
     private disposables: vscode.Disposable[] = [];
 
     constructor(
@@ -85,6 +90,7 @@ export class StatusBarManager {
 
     dispose(): void {
         this.stopRefreshTimer();
+        this.stopBlink();
         if (this.singleClickTimer) {
             clearTimeout(this.singleClickTimer);
             this.singleClickTimer = undefined;
@@ -116,39 +122,70 @@ export class StatusBarManager {
     // ── Status bar item update ────────────────────────────────────────────────
 
     private updateItem(result: QuotaResult): void {
+        let color: vscode.ThemeColor | string | undefined;
+
         switch (result.kind) {
             case 'loading':
                 this.item.text    = `${STATUSBAR_ICON} ${t('statusbar_widget_initial')}`;
                 this.item.tooltip = new vscode.MarkdownString(t('statusbar_tooltip_loading'));
-                this.item.color   = undefined;
+                color = undefined;
                 break;
 
             case 'available': {
                 const pct = result.quota.percentRemaining;
                 this.item.text    = `${STATUSBAR_ICON} ${tf('statusbar_widget_available', this.formatPercent(pct))}`;
                 this.item.tooltip = this.buildTooltip(result);
-                this.item.color   = this.colorForPercent(pct);
+                color = this.colorForPercent(pct);
                 break;
             }
 
             case 'unlimited':
                 this.item.text    = `${STATUSBAR_ICON} ${t('statusbar_widget_unlimited')}`;
                 this.item.tooltip = new vscode.MarkdownString(t('statusbar_tooltip_unlimited'));
-                this.item.color   = undefined;
+                color = undefined;
                 break;
 
             case 'noAccount':
                 this.item.text    = `${STATUSBAR_ICON} ${t('statusbar_widget_signin')}`;
                 this.item.tooltip = new vscode.MarkdownString(t('statusbar_tooltip_noaccount'));
-                this.item.color   = undefined;
+                color = undefined;
                 break;
 
             case 'error':
                 this.item.text    = `${STATUSBAR_ICON} ${t('statusbar_widget_error')}`;
                 this.item.tooltip = new vscode.MarkdownString(tf('statusbar_tooltip_error', result.message));
-                this.item.color   = new vscode.ThemeColor('errorForeground');
+                color = new vscode.ThemeColor('errorForeground');
                 break;
         }
+
+        this.currentColor = color;
+        this.item.color = color;
+    }
+
+    private stopBlink(): void {
+        if (this.blinkTimer) {
+            clearInterval(this.blinkTimer);
+            this.blinkTimer = undefined;
+        }
+    }
+
+    /** Blink twice after refresh by alternating current color and dark gray. */
+    private blinkItem(): void {
+        this.stopBlink();
+
+        const fullColor = this.currentColor;
+        let step = 0;
+
+        this.item.color = BLINK_DARK_GRAY;
+        this.blinkTimer = setInterval(() => {
+            step++;
+            this.item.color = step % 2 === 1 ? fullColor : BLINK_DARK_GRAY;
+
+            if (step >= BLINK_STEPS) {
+                this.stopBlink();
+                this.item.color = fullColor;
+            }
+        }, BLINK_STEP_MS);
     }
 
     private buildTooltip(result: Extract<QuotaResult, { kind: 'available' }>): vscode.MarkdownString {
@@ -238,7 +275,9 @@ export class StatusBarManager {
     // ── Actions ───────────────────────────────────��───────────────────────────
 
     private refresh(): void {
-        this.service.refreshQuota().catch(() => { /* best-effort */ });
+        this.service.refreshQuota()
+            .then(() => this.blinkItem())
+            .catch(() => { /* best-effort */ });
     }
 
     private signIn(): void {
