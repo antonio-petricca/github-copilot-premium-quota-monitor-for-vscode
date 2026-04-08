@@ -1,0 +1,104 @@
+{
+  "name": "github-copilot-premium-quota-monitor",
+  "displayName": "%displayName%",
+  "description": "%description%",
+  "version": "1.0.0",
+  "publisher": "antonio-petricca",
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antonio-petricca/github-copilot-premium-quota-monitor-for-vscode"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "github",
+    "copilot",
+    "quota",
+    "monitor",
+    "status bar"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ghcpQuotaMonitor.refresh",
+        "title": "%command.refresh.title%",
+        "category": "%command.category%"
+      },
+      {
+        "command": "ghcpQuotaMonitor.signIn",
+        "title": "%command.signIn.title%",
+        "category": "%command.category%"
+      },
+      {
+        "command": "ghcpQuotaMonitor.signOut",
+        "title": "%command.signOut.title%",
+        "category": "%command.category%"
+      }
+    ],
+    "configuration": {
+      "title": "%config.title%",
+      "properties": {
+        "ghcpQuotaMonitor.refreshIntervalMinutes": {
+          "type": "integer",
+          "default": 5,
+          "minimum": 1,
+          "maximum": 60,
+          "description": "%config.refreshIntervalMinutes.description%"
+        },
+        "ghcpQuotaMonitor.criticalThreshold": {
+          "type": "integer",
+          "default": 10,
+          "minimum": 2,
+          "maximum": 99,
+          "description": "%config.criticalThreshold.description%"
+        },
+        "ghcpQuotaMonitor.criticalColor": {
+          "type": "string",
+          "default": "#FF0000",
+          "description": "%config.criticalColor.description%",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        "ghcpQuotaMonitor.warningThreshold": {
+          "type": "integer",
+          "default": 30,
+          "minimum": 2,
+          "maximum": 99,
+          "description": "%config.warningThreshold.description%"
+        },
+        "ghcpQuotaMonitor.warningColor": {
+          "type": "string",
+          "default": "#FFFF00",
+          "description": "%config.warningColor.description%",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.3.0",
+    "@vscode/vsce": "^2.24.0"
+  }
+}
+

@@ -1,0 +1,9 @@
+out/**
+node_modules/**
+src/**
+.vscode/**
+.vscodeignore
+tsconfig.json
+*.map
+**/*.ts
+

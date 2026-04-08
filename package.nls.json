@@ -1,0 +1,15 @@
+{
+  "displayName": "GitHub Copilot Premium Quota Monitor",
+  "description": "Monitor the remaining GitHub Copilot premium model quota directly from the VS Code status bar.",
+  "command.category": "GitHub Copilot Quota",
+  "command.refresh.title": "Refresh Quota",
+  "command.signIn.title": "Sign In with GitHub",
+  "command.signOut.title": "Sign Out",
+  "config.title": "GitHub Copilot Premium Quota Monitor",
+  "config.refreshIntervalMinutes.description": "How often the quota data is automatically refreshed (1–60 minutes).",
+  "config.criticalThreshold.description": "Quota percentage at or below which the status bar label turns the critical color (must be > 1 and < warning threshold).",
+  "config.criticalColor.description": "Hex color used when quota is at or below the critical threshold (e.g. #FF0000).",
+  "config.warningThreshold.description": "Quota percentage at or below which the status bar label turns the warning color (must be < 100 and > critical threshold).",
+  "config.warningColor.description": "Hex color used when quota is at or below the warning threshold (e.g. #FFFF00)."
+}
+
