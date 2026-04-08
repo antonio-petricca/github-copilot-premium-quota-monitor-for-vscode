@@ -105,7 +105,7 @@ export class StatusBarManager {
         switch (result.kind) {
             case 'loading':
                 this.item.text    = `$(copilot) ${t('statusbar_widget_initial')}`;
-                this.item.tooltip = t('statusbar_tooltip_loading');
+                this.item.tooltip = new vscode.MarkdownString(t('statusbar_tooltip_loading'));
                 this.item.color   = undefined;
                 break;
 
@@ -119,7 +119,7 @@ export class StatusBarManager {
 
             case 'unlimited':
                 this.item.text    = `$(copilot) ${t('statusbar_widget_unlimited')}`;
-                this.item.tooltip = t('statusbar_tooltip_unlimited');
+                this.item.tooltip = new vscode.MarkdownString(t('statusbar_tooltip_unlimited'));
                 this.item.color   = undefined;
                 break;
 
@@ -131,7 +131,7 @@ export class StatusBarManager {
 
             case 'error':
                 this.item.text    = `$(copilot) ${t('statusbar_widget_error')}`;
-                this.item.tooltip = tf('statusbar_tooltip_error', result.message);
+                this.item.tooltip = new vscode.MarkdownString(tf('statusbar_tooltip_error', result.message));
                 this.item.color   = new vscode.ThemeColor('errorForeground');
                 break;
         }
