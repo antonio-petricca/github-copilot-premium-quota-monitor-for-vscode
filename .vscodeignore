@@ -3,7 +3,10 @@ node_modules/**
 src/**
 .vscode/**
 .vscodeignore
+.eslintrc.json
+.gitignore
 tsconfig.json
 *.map
 **/*.ts
+images/icon.svg
 
