@@ -104,33 +104,33 @@ export class StatusBarManager {
     private updateItem(result: QuotaResult): void {
         switch (result.kind) {
             case 'loading':
-                this.item.text    = t('statusbar_widget_initial');
+                this.item.text    = `$(copilot) ${t('statusbar_widget_initial')}`;
                 this.item.tooltip = t('statusbar_tooltip_loading');
                 this.item.color   = undefined;
                 break;
 
             case 'available': {
                 const pct = result.quota.percentRemaining;
-                this.item.text    = tf('statusbar_widget_available', this.formatPercent(pct));
+                this.item.text    = `$(copilot) ${tf('statusbar_widget_available', this.formatPercent(pct))}`;
                 this.item.tooltip = this.buildTooltip(result);
                 this.item.color   = this.colorForPercent(pct);
                 break;
             }
 
             case 'unlimited':
-                this.item.text    = t('statusbar_widget_unlimited');
+                this.item.text    = `$(copilot) ${t('statusbar_widget_unlimited')}`;
                 this.item.tooltip = t('statusbar_tooltip_unlimited');
                 this.item.color   = undefined;
                 break;
 
             case 'noAccount':
-                this.item.text    = t('statusbar_widget_signin');
+                this.item.text    = `$(copilot) ${t('statusbar_widget_signin')}`;
                 this.item.tooltip = t('statusbar_tooltip_noaccount');
                 this.item.color   = undefined;
                 break;
 
             case 'error':
-                this.item.text    = t('statusbar_widget_error');
+                this.item.text    = `$(copilot) ${t('statusbar_widget_error')}`;
                 this.item.tooltip = tf('statusbar_tooltip_error', result.message);
                 this.item.color   = new vscode.ThemeColor('errorForeground');
                 break;
