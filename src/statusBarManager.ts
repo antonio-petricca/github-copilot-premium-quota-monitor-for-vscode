@@ -44,11 +44,10 @@ export class StatusBarManager {
         private readonly service: PluginService,
         private readonly context: vscode.ExtensionContext,
     ) {
-        // Right-aligned next to Copilot's own status indicator.
+        // Right-aligned with default VS Code status bar ordering.
         this.item = vscode.window.createStatusBarItem(
             'ghcpPremiumQuotaMonitor',
             vscode.StatusBarAlignment.Right,
-            10000,
         );
         this.item.name    = 'GitHub Copilot Premium Quota Monitor';
         this.item.command = 'ghcpPremiumQuotaMonitor.showMenu';
