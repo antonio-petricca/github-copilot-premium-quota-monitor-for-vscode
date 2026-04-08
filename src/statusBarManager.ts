@@ -30,6 +30,7 @@ import { t, tf } from './i18n';
 
 /** Maximum interval (ms) between two clicks to be treated as a double-click. */
 const DOUBLE_CLICK_MS = 400;
+const STATUSBAR_ICON = '$(dashboard)';
 
 export class StatusBarManager {
     private item: vscode.StatusBarItem;
@@ -118,33 +119,33 @@ export class StatusBarManager {
     private updateItem(result: QuotaResult): void {
         switch (result.kind) {
             case 'loading':
-                this.item.text    = `$(copilot) ${t('statusbar_widget_initial')}`;
+                this.item.text    = `${STATUSBAR_ICON} ${t('statusbar_widget_initial')}`;
                 this.item.tooltip = new vscode.MarkdownString(t('statusbar_tooltip_loading'));
                 this.item.color   = undefined;
                 break;
 
             case 'available': {
                 const pct = result.quota.percentRemaining;
-                this.item.text    = `$(copilot) ${tf('statusbar_widget_available', this.formatPercent(pct))}`;
+                this.item.text    = `${STATUSBAR_ICON} ${tf('statusbar_widget_available', this.formatPercent(pct))}`;
                 this.item.tooltip = this.buildTooltip(result);
                 this.item.color   = this.colorForPercent(pct);
                 break;
             }
 
             case 'unlimited':
-                this.item.text    = `$(copilot) ${t('statusbar_widget_unlimited')}`;
+                this.item.text    = `${STATUSBAR_ICON} ${t('statusbar_widget_unlimited')}`;
                 this.item.tooltip = new vscode.MarkdownString(t('statusbar_tooltip_unlimited'));
                 this.item.color   = undefined;
                 break;
 
             case 'noAccount':
-                this.item.text    = `$(copilot) ${t('statusbar_widget_signin')}`;
+                this.item.text    = `${STATUSBAR_ICON} ${t('statusbar_widget_signin')}`;
                 this.item.tooltip = new vscode.MarkdownString(t('statusbar_tooltip_noaccount'));
                 this.item.color   = undefined;
                 break;
 
             case 'error':
-                this.item.text    = `$(copilot) ${t('statusbar_widget_error')}`;
+                this.item.text    = `${STATUSBAR_ICON} ${t('statusbar_widget_error')}`;
                 this.item.tooltip = new vscode.MarkdownString(tf('statusbar_tooltip_error', result.message));
                 this.item.color   = new vscode.ThemeColor('errorForeground');
                 break;
