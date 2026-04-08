@@ -89,7 +89,7 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "lint": "eslint src --ext ts",
-    "package": "vsce package"
+    "package": "node ./scripts/pack-vsix.js"
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",
