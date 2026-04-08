@@ -44,7 +44,7 @@ A GitHub account with an active Copilot subscription is required.
 
 ## Credits
 
-Based on the [IntelliJ plugin](https://github.com/antonio-petricca/github-copilot-premium-quota-monitor-for-ij) by **Antonio Petricca**.  
+Based on the [IntelliJ plugin](https://github.com/antonio-petricca/github-copilot-premium-quota-monitor-for-ij).
 
 Special thanks to contributors: [Fabio Pelliccia](https://github.com/Fabio-Pelliccia), [Massimo Ambrosino](https://github.com/mambrosino), [Vincenzo Pimpinella](https://github.com/Enzo88).
 
