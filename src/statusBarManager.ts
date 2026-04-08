@@ -35,8 +35,11 @@ const BLINK_STEP_MS = 400;
 const BLINK_STEPS = 3;
 const BLINK_DARK_GRAY = '#555555';
 
+type MenuAction = 'refresh' | 'settings' | 'signIn' | 'signOut';
+type ActionQuickPickItem = vscode.QuickPickItem & { action: MenuAction };
+
 export class StatusBarManager {
-    private item: vscode.StatusBarItem;
+    private readonly item: vscode.StatusBarItem;
     private refreshTimer: NodeJS.Timeout | undefined;
     private blinkTimer: NodeJS.Timeout | undefined;
     private singleClickTimer: NodeJS.Timeout | undefined;
@@ -247,32 +250,37 @@ export class StatusBarManager {
 
     private async showMenu(): Promise<void> {
         const isSignedIn = this.auth.isAuthenticatedCached();
-        const items: vscode.QuickPickItem[] = [
-            { label: '$(refresh) ' + t('statusbar_action_refresh') },
-            { label: '$(gear) '    + t('statusbar_action_settings') },
+        const items: Array<ActionQuickPickItem | vscode.QuickPickItem> = [
+            { label: '$(refresh) ' + t('statusbar_action_refresh'), action: 'refresh' },
+            { label: '$(gear) ' + t('statusbar_action_settings'), action: 'settings' },
             { kind: vscode.QuickPickItemKind.Separator, label: '' },
             isSignedIn
-                ? { label: '$(sign-out) ' + t('statusbar_action_signout') }
-                : { label: '$(person)   ' + t('statusbar_action_signin') },
+                ? { label: '$(sign-out) ' + t('statusbar_action_signout'), action: 'signOut' }
+                : { label: '$(person)   ' + t('statusbar_action_signin'), action: 'signIn' },
         ];
 
         const chosen = await vscode.window.showQuickPick(items, {
             placeHolder: 'GitHub Copilot Premium Quota Monitor',
         });
-        if (!chosen) { return; }
+        if (!chosen || !('action' in chosen)) { return; }
 
-        if (chosen.label.includes(t('statusbar_action_refresh'))) {
-            this.refresh();
-        } else if (chosen.label.includes(t('statusbar_action_settings'))) {
-            vscode.commands.executeCommand('workbench.action.openSettings', 'ghcpPremiumQuotaMonitor');
-        } else if (chosen.label.includes(t('statusbar_action_signin'))) {
-            this.signIn();
-        } else if (chosen.label.includes(t('statusbar_action_signout'))) {
-            this.signOut();
+        switch (chosen.action) {
+            case 'refresh':
+                this.refresh();
+                break;
+            case 'settings':
+                vscode.commands.executeCommand('workbench.action.openSettings', 'ghcpPremiumQuotaMonitor');
+                break;
+            case 'signIn':
+                this.signIn();
+                break;
+            case 'signOut':
+                this.signOut();
+                break;
         }
     }
 
-    // ── Actions ───────────────────────────────────��───────────────────────────
+    // ── Actions ───────────────────────────────────────────────────────────────
 
     private refresh(): void {
         this.service.refreshQuota()

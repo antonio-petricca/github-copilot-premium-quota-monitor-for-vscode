@@ -27,7 +27,7 @@ A GitHub account with an active Copilot subscription is required.
 ## Settings
 
 | Setting | Default | Description |
-|---|---|---|
+| --- | --- | --- |
 | `ghcpPremiumQuotaMonitor.refreshIntervalMinutes` | `5` | Auto-refresh interval (1–60 min) |
 | `ghcpPremiumQuotaMonitor.criticalThreshold` | `10` | Quota % for critical colour |
 | `ghcpPremiumQuotaMonitor.criticalColor` | `#FF0000` | Colour for critical state |
@@ -37,7 +37,7 @@ A GitHub account with an active Copilot subscription is required.
 ## Commands
 
 | Command | Description |
-|---|---|
+| --- | --- |
 | `GitHub Copilot Quota: Refresh Quota` | Refresh quota immediately |
 | `GitHub Copilot Quota: Sign In with GitHub` | Start the sign-in flow |
 | `GitHub Copilot Quota: Sign Out` | Sign out and clear credentials |
@@ -49,11 +49,10 @@ Based on the [IntelliJ plugin](https://github.com/antonio-petricca/github-copilo
 Special thanks to contributors:
 
 - [Fabio Miconi](https://github.com/miconif)
-- [Fabio Pelliccia](https://github.com/Fabio-Pelliccia)-
+- [Fabio Pelliccia](https://github.com/Fabio-Pelliccia)
 - [Massimo Ambrosino](https://github.com/mambrosino)
 - [Vincenzo Pimpinella](https://github.com/Enzo88).
 
 ## License
 
 MIT
-
