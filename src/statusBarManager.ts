@@ -125,7 +125,7 @@ export class StatusBarManager {
 
             case 'noAccount':
                 this.item.text    = `$(copilot) ${t('statusbar_widget_signin')}`;
-                this.item.tooltip = t('statusbar_tooltip_noaccount');
+                this.item.tooltip = new vscode.MarkdownString(t('statusbar_tooltip_noaccount'));
                 this.item.color   = undefined;
                 break;
 
