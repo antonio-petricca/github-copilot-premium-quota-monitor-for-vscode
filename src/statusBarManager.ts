@@ -47,7 +47,7 @@ export class StatusBarManager {
         this.item = vscode.window.createStatusBarItem(
             'ghcpPremiumQuotaMonitor',
             vscode.StatusBarAlignment.Right,
-            100,
+            10000,
         );
         this.item.name    = 'GitHub Copilot Premium Quota Monitor';
         this.item.command = 'ghcpPremiumQuotaMonitor.showMenu';
