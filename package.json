@@ -30,17 +30,17 @@
   "contributes": {
     "commands": [
       {
-        "command": "ghcpQuotaMonitor.refresh",
+        "command": "ghcpPremiumQuotaMonitor.refresh",
         "title": "%command.refresh.title%",
         "category": "%command.category%"
       },
       {
-        "command": "ghcpQuotaMonitor.signIn",
+        "command": "ghcpPremiumQuotaMonitor.signIn",
         "title": "%command.signIn.title%",
         "category": "%command.category%"
       },
       {
-        "command": "ghcpQuotaMonitor.signOut",
+        "command": "ghcpPremiumQuotaMonitor.signOut",
         "title": "%command.signOut.title%",
         "category": "%command.category%"
       }
@@ -48,34 +48,34 @@
     "configuration": {
       "title": "%config.title%",
       "properties": {
-        "ghcpQuotaMonitor.refreshIntervalMinutes": {
+        "ghcpPremiumQuotaMonitor.refreshIntervalMinutes": {
           "type": "integer",
           "default": 5,
           "minimum": 1,
           "maximum": 60,
           "description": "%config.refreshIntervalMinutes.description%"
         },
-        "ghcpQuotaMonitor.criticalThreshold": {
+        "ghcpPremiumQuotaMonitor.criticalThreshold": {
           "type": "integer",
           "default": 10,
           "minimum": 2,
           "maximum": 99,
           "description": "%config.criticalThreshold.description%"
         },
-        "ghcpQuotaMonitor.criticalColor": {
+        "ghcpPremiumQuotaMonitor.criticalColor": {
           "type": "string",
           "default": "#FF0000",
           "description": "%config.criticalColor.description%",
           "pattern": "^#[0-9A-Fa-f]{6}$"
         },
-        "ghcpQuotaMonitor.warningThreshold": {
+        "ghcpPremiumQuotaMonitor.warningThreshold": {
           "type": "integer",
           "default": 30,
           "minimum": 2,
           "maximum": 99,
           "description": "%config.warningThreshold.description%"
         },
-        "ghcpQuotaMonitor.warningColor": {
+        "ghcpPremiumQuotaMonitor.warningColor": {
           "type": "string",
           "default": "#FFFF00",
           "description": "%config.warningColor.description%",

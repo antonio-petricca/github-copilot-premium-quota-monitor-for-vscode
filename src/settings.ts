@@ -1,12 +1,12 @@
 /**
  * Settings wrapper (mirrors PluginSettings.kt).
  *
- * Reads/writes from the VS Code configuration namespace `ghcpQuotaMonitor.*`.
+ * Reads/writes from the VS Code configuration namespace `ghcpPremiumQuotaMonitor.*`.
  */
 
 import * as vscode from 'vscode';
 
-const SECTION = 'ghcpQuotaMonitor';
+const SECTION = 'ghcpPremiumQuotaMonitor';
 
 export const DEFAULT_REFRESH_INTERVAL_MINUTES = 5;
 export const DEFAULT_CRITICAL_THRESHOLD = 10;
@@ -45,7 +45,7 @@ export function getWarningColor(): string {
 }
 
 /**
- * Registers a listener that fires whenever any `ghcpQuotaMonitor.*` setting
+ * Registers a listener that fires whenever any `ghcpPremiumQuotaMonitor.*` setting
  * changes and returns a Disposable to unregister it.
  */
 export function onSettingsChanged(callback: () => void): vscode.Disposable {

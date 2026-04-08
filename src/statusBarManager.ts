@@ -35,12 +35,12 @@ export class StatusBarManager {
     ) {
         // Right-aligned next to Copilot's own status indicator.
         this.item = vscode.window.createStatusBarItem(
-            'ghcpQuotaMonitor',
+            'ghcpPremiumQuotaMonitor',
             vscode.StatusBarAlignment.Right,
             100,
         );
         this.item.name    = 'GitHub Copilot Premium Quota Monitor';
-        this.item.command = 'ghcpQuotaMonitor.showMenu';
+        this.item.command = 'ghcpPremiumQuotaMonitor.showMenu';
         this.item.show();
 
         // Subscribe to quota updates
@@ -57,14 +57,14 @@ export class StatusBarManager {
 
         // Register the hidden "show menu" command (triggered by clicking the item)
         this.disposables.push(
-            vscode.commands.registerCommand('ghcpQuotaMonitor.showMenu', () => this.showMenu()),
+            vscode.commands.registerCommand('ghcpPremiumQuotaMonitor.showMenu', () => this.showMenu()),
         );
 
         // Register the public commands
         this.disposables.push(
-            vscode.commands.registerCommand('ghcpQuotaMonitor.refresh', () => this.refresh()),
-            vscode.commands.registerCommand('ghcpQuotaMonitor.signIn',  () => this.signIn()),
-            vscode.commands.registerCommand('ghcpQuotaMonitor.signOut', () => this.signOut()),
+            vscode.commands.registerCommand('ghcpPremiumQuotaMonitor.refresh', () => this.refresh()),
+            vscode.commands.registerCommand('ghcpPremiumQuotaMonitor.signIn',  () => this.signIn()),
+            vscode.commands.registerCommand('ghcpPremiumQuotaMonitor.signOut', () => this.signOut()),
         );
 
         // Initial render + first refresh
@@ -184,7 +184,7 @@ export class StatusBarManager {
         if (chosen.label.includes(t('statusbar_action_refresh'))) {
             this.refresh();
         } else if (chosen.label.includes(t('statusbar_action_settings'))) {
-            vscode.commands.executeCommand('workbench.action.openSettings', 'ghcpQuotaMonitor');
+            vscode.commands.executeCommand('workbench.action.openSettings', 'ghcpPremiumQuotaMonitor');
         } else if (chosen.label.includes(t('statusbar_action_signin'))) {
             this.signIn();
         } else if (chosen.label.includes(t('statusbar_action_signout'))) {

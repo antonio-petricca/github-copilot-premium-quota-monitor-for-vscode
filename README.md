@@ -26,11 +26,11 @@ A GitHub account with an active Copilot subscription is required.
 
 | Setting | Default | Description |
 |---|---|---|
-| `ghcpQuotaMonitor.refreshIntervalMinutes` | `5` | Auto-refresh interval (1–60 min) |
-| `ghcpQuotaMonitor.criticalThreshold` | `10` | Quota % for critical colour |
-| `ghcpQuotaMonitor.criticalColor` | `#FF0000` | Colour for critical state |
-| `ghcpQuotaMonitor.warningThreshold` | `30` | Quota % for warning colour |
-| `ghcpQuotaMonitor.warningColor` | `#FFFF00` | Colour for warning state |
+| `ghcpPremiumQuotaMonitor.refreshIntervalMinutes` | `5` | Auto-refresh interval (1–60 min) |
+| `ghcpPremiumQuotaMonitor.criticalThreshold` | `10` | Quota % for critical colour |
+| `ghcpPremiumQuotaMonitor.criticalColor` | `#FF0000` | Colour for critical state |
+| `ghcpPremiumQuotaMonitor.warningThreshold` | `30` | Quota % for warning colour |
+| `ghcpPremiumQuotaMonitor.warningColor` | `#FFFF00` | Colour for warning state |
 
 ## Commands
 
