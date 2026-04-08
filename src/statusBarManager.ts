@@ -4,9 +4,14 @@
  * Creates and manages the VS Code status bar item that shows the remaining
  * GitHub Copilot premium quota.
  *
- * - Click on the item → quick-action menu (Refresh / Sign in or Sign out / Settings).
+ * - Single click  → quick-action menu (Refresh / Sign in or Sign out / Settings).
+ * - Double click  → immediate quota refresh (no menu).
  * - Automatic background refresh at the configured interval.
  * - Color-coded urgency levels (critical / warning / normal).
+ *
+ * Double-click is detected by tracking the timestamp of the last click:
+ * if two clicks arrive within DOUBLE_CLICK_MS the pending single-click timer
+ * is cancelled and a refresh is triggered immediately instead.
  */
 
 import * as vscode from 'vscode';
@@ -23,9 +28,14 @@ import {
 } from './settings';
 import { t, tf } from './i18n';
 
+/** Maximum interval (ms) between two clicks to be treated as a double-click. */
+const DOUBLE_CLICK_MS = 400;
+
 export class StatusBarManager {
     private item: vscode.StatusBarItem;
     private refreshTimer: NodeJS.Timeout | undefined;
+    private singleClickTimer: NodeJS.Timeout | undefined;
+    private lastClickAt = 0;
     private disposables: vscode.Disposable[] = [];
 
     constructor(
@@ -55,9 +65,9 @@ export class StatusBarManager {
             this.updateItem(this.service.getCachedResult());
         }));
 
-        // Register the hidden "show menu" command (triggered by clicking the item)
+        // Register the hidden click command (triggered by clicking the item)
         this.disposables.push(
-            vscode.commands.registerCommand('ghcpPremiumQuotaMonitor.showMenu', () => this.showMenu()),
+            vscode.commands.registerCommand('ghcpPremiumQuotaMonitor.showMenu', () => this.handleClick()),
         );
 
         // Register the public commands
@@ -75,6 +85,10 @@ export class StatusBarManager {
 
     dispose(): void {
         this.stopRefreshTimer();
+        if (this.singleClickTimer) {
+            clearTimeout(this.singleClickTimer);
+            this.singleClickTimer = undefined;
+        }
         this.item.dispose();
         for (const d of this.disposables) { d.dispose(); }
         this.disposables = [];
@@ -164,6 +178,35 @@ export class StatusBarManager {
     }
 
     // ── Quick-action menu ─────────────────────────────────────────────────────
+
+    /**
+     * Click handler for the status bar item.
+     *
+     * - Single click: defers the popup by DOUBLE_CLICK_MS so that the first
+     *   click of a double-click sequence does NOT open the menu.
+     * - Double click: cancels the pending single-click timer and refreshes
+     *   the quota immediately (mirrors IntelliJ StatusBarWidget.kt).
+     */
+    private handleClick(): void {
+        const now = Date.now();
+        if (now - this.lastClickAt <= DOUBLE_CLICK_MS) {
+            // Double-click detected: cancel pending menu and refresh immediately.
+            if (this.singleClickTimer) {
+                clearTimeout(this.singleClickTimer);
+                this.singleClickTimer = undefined;
+            }
+            this.lastClickAt = 0;
+            this.refresh();
+        } else {
+            // First click: schedule menu after the double-click window expires.
+            this.lastClickAt = now;
+            if (this.singleClickTimer) { clearTimeout(this.singleClickTimer); }
+            this.singleClickTimer = setTimeout(() => {
+                this.singleClickTimer = undefined;
+                this.showMenu();
+            }, DOUBLE_CLICK_MS);
+        }
+    }
 
     private async showMenu(): Promise<void> {
         const isSignedIn = this.auth.isAuthenticatedCached();
