@@ -1,4 +1,3 @@
-out/**
 node_modules/**
 src/**
 .vscode/**
@@ -6,7 +5,7 @@ src/**
 .eslintrc.json
 .gitignore
 tsconfig.json
-*.map
+out/**/*.map
 **/*.ts
 images/icon.svg
 
