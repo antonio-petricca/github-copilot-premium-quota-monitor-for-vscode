@@ -38,9 +38,9 @@ A GitHub account with an active Copilot subscription is required.
 
 | Command | Description |
 | --- | --- |
-| `GitHub Copilot Quota: Refresh Quota` | Refresh quota immediately |
-| `GitHub Copilot Quota: Sign In with GitHub` | Start the sign-in flow |
-| `GitHub Copilot Quota: Sign Out` | Sign out and clear credentials |
+| `GitHub Copilot Premium Quota Monitor: Refresh Quota` | Refresh quota immediately |
+| `GitHub Copilot Premium Quota Monitor: Sign In with GitHub` | Start the sign-in flow |
+| `GitHub Copilot Premium Quota Monitor: Sign Out` | Sign out and clear credentials |
 
 ## Credits
 

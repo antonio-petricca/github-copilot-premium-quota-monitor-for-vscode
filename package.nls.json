@@ -1,7 +1,7 @@
 {
   "displayName": "GitHub Copilot Premium Quota Monitor",
   "description": "Monitor the remaining GitHub Copilot premium model quota directly from the VS Code status bar.",
-  "command.category": "GitHub Copilot Quota",
+  "command.category": "GitHub Copilot Premium Quota Monitor",
   "command.refresh.title": "Refresh Quota",
   "command.signIn.title": "Sign In with GitHub",
   "command.signOut.title": "Sign Out",
