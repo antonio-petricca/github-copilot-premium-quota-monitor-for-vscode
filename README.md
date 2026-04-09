@@ -51,7 +51,7 @@ Special thanks to contributors:
 - [Fabio Miconi](https://github.com/miconif)
 - [Fabio Pelliccia](https://github.com/Fabio-Pelliccia)
 - [Massimo Ambrosino](https://github.com/mambrosino)
-- [Vincenzo Pimpinella](https://github.com/Enzo88).
+- [Vincenzo Pimpinella](https://github.com/Enzo88)
 
 ## License
 
