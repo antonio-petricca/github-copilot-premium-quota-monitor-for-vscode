@@ -2,7 +2,7 @@
 
 ## [1.0.3]
 
-- Fixed again then plugin icon.
+- Fixed again the plugin icon.
 
 ## [1.0.2]
 
