@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.2]
+
+- Fixed plugin icon.
+
 ## [1.0.1]
 
 - Change command base from "GitHub Copilot Quota" to "GitHub Copilot Premium Quota Monitor".
