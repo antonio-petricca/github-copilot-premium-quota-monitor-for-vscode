@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.3]
+
+- Fixed again then plugin icon.
+
 ## [1.0.2]
 
 - Fixed plugin icon.
