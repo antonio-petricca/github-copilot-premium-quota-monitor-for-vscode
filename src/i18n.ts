@@ -70,7 +70,7 @@ const EN: Bundle = {
     statusbar_widget_error: '✗',
     statusbar_widget_initial: 'GHCP…',
     statusbar_widget_signin: 'GHCP — Sign in',
-    statusbar_widget_unlimited: 'GHCP ∞',
+    statusbar_widget_unlimited: '∞',
 
     statusbar_dialog_auth_error_msg: 'Authentication error: {0}',
     statusbar_dialog_auth_error_title: 'Authentication Error',
@@ -124,7 +124,7 @@ const DE: Bundle = {
     statusbar_widget_error: '✗',
     statusbar_widget_initial: 'GHCP…',
     statusbar_widget_signin: 'GHCP — Anmelden',
-    statusbar_widget_unlimited: 'GHCP ∞',
+    statusbar_widget_unlimited: '∞',
 
     statusbar_dialog_auth_error_msg: 'Authentifizierungsfehler: {0}',
     statusbar_dialog_auth_error_title: 'Authentifizierungsfehler',
@@ -178,7 +178,7 @@ const ES: Bundle = {
     statusbar_widget_error: '✗',
     statusbar_widget_initial: 'GHCP…',
     statusbar_widget_signin: 'GHCP — Iniciar sesión',
-    statusbar_widget_unlimited: 'GHCP ∞',
+    statusbar_widget_unlimited: '∞',
 
     statusbar_dialog_auth_error_msg: 'Error de autenticación: {0}',
     statusbar_dialog_auth_error_title: 'Error de autenticación',
@@ -232,7 +232,7 @@ const FR: Bundle = {
     statusbar_widget_error: '✗',
     statusbar_widget_initial: 'GHCP…',
     statusbar_widget_signin: 'GHCP — Se connecter',
-    statusbar_widget_unlimited: 'GHCP ∞',
+    statusbar_widget_unlimited: '∞',
 
     statusbar_dialog_auth_error_msg: "Erreur d'authentification : {0}",
     statusbar_dialog_auth_error_title: "Erreur d'authentification",
@@ -286,7 +286,7 @@ const IT: Bundle = {
     statusbar_widget_error: '✗',
     statusbar_widget_initial: 'GHCP…',
     statusbar_widget_signin: 'GHCP — Accedi',
-    statusbar_widget_unlimited: 'GHCP ∞',
+    statusbar_widget_unlimited: '∞',
 
     statusbar_dialog_auth_error_msg: 'Errore di autenticazione: {0}',
     statusbar_dialog_auth_error_title: 'Errore di autenticazione',
