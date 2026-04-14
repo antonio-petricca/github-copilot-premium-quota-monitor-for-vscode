@@ -1,4 +1,9 @@
+
 # Changelog
+
+## [1.0.4]
+
+- The statusbar_widget_unlimited string in all languages now shows only the infinity symbol (∞).
 
 ## [1.0.3]
 
