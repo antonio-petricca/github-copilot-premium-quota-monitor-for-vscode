@@ -45,6 +45,7 @@ type AuthStateListener = () => void;
 export class AuthService {
     private secrets: vscode.SecretStorage;
     private globalState: vscode.Memento;
+    private readonly version: string;
 
     // In-memory cache so callers on the main thread never need to await
     private cachedToken: string | undefined;
@@ -52,9 +53,10 @@ export class AuthService {
 
     private authListeners: AuthStateListener[] = [];
 
-    constructor(context: vscode.ExtensionContext) {
+    constructor(context: vscode.ExtensionContext, version: string) {
         this.secrets     = context.secrets;
         this.globalState = context.globalState;
+        this.version     = version;
 
         // Pre-load credentials asynchronously; callers can await isAuthenticated()
         // for a blocking check or use isAuthenticatedCached() after init.
@@ -191,7 +193,7 @@ export class AuthService {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     Accept:        'application/vnd.github+json',
-                    'User-Agent':  'github-copilot-quota-monitor-vscode/1.0',
+                    'User-Agent':  `github-copilot-quota-monitor-vscode/${this.version}`,
                     'Connection':  'close',
                 },
             }, incoming => {

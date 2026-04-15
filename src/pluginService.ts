@@ -34,12 +34,14 @@ type QuotaListener = (result: QuotaResult) => void;
 
 export class PluginService {
     private auth: AuthService;
+    private readonly version: string;
     private cachedResult: QuotaResult = { kind: 'loading' };
     private isFetching = false;
     private listeners: QuotaListener[] = [];
 
-    constructor(auth: AuthService) {
-        this.auth = auth;
+    constructor(auth: AuthService, version: string) {
+        this.auth    = auth;
+        this.version = version;
 
         // Refresh quota whenever the user signs in or out.
         this.auth.onAuthStateChanged(() => {
@@ -87,7 +89,7 @@ export class PluginService {
                 headers: {
                     Authorization:            `token ${token}`,
                     Accept:                   'application/json',
-                    'User-Agent':             'github-copilot-quota-monitor-vscode/1.0',
+                    'User-Agent':             `github-copilot-quota-monitor-vscode/${this.version}`,
                     'Copilot-Integration-Id': 'vscode',
                     'Connection':             'close',
                 },

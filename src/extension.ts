@@ -15,8 +15,9 @@ import { t, tf } from './i18n';
 let statusBarManager: StatusBarManager | undefined;
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
-    const auth    = new AuthService(context);
-    const service = new PluginService(auth);
+    const version = (context.extension.packageJSON as { version: string }).version;
+    const auth    = new AuthService(context, version);
+    const service = new PluginService(auth, version);
     statusBarManager = new StatusBarManager(auth, service, context);
 
     context.subscriptions.push(new vscode.Disposable(() => statusBarManager?.dispose()));
