@@ -4,6 +4,7 @@
 ## [1.0.5]
 
 - Fixed HTTP connections not explicitly closed: added `Connection: close` header and `res.on('error')` handler to all HTTPS requests.
+- Fixed potential response stream leak: `IncomingMessage` is now explicitly destroyed on request timeout.
 
 ## [1.0.4]
 

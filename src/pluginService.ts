@@ -81,6 +81,7 @@ export class PluginService {
         }
 
         return new Promise(resolve => {
+            let res: import('http').IncomingMessage | undefined;
             const req = https.request(COPILOT_USER_API_URL, {
                 method: 'GET',
                 headers: {
@@ -90,14 +91,15 @@ export class PluginService {
                     'Copilot-Integration-Id': 'vscode',
                     'Connection':             'close',
                 },
-            }, res => {
+            }, incoming => {
+                res = incoming;
                 let data = '';
                 res.on('data', chunk => { data += chunk; });
                 res.on('error', (e: Error) => {
                     resolve({ kind: 'error', message: e.message ?? t('general_network_error') });
                 });
                 res.on('end', () => {
-                    const code = res.statusCode ?? 0;
+                    const code = res!.statusCode ?? 0;
                     if (code === 200) {
                         resolve(this.parseQuota(data));
                     } else if (code === 401 || code === 403) {
@@ -113,6 +115,7 @@ export class PluginService {
                 resolve({ kind: 'error', message: e.message ?? t('general_network_error') });
             });
             req.setTimeout(10_000, () => {
+                res?.destroy();
                 req.destroy();
                 resolve({ kind: 'error', message: t('general_network_error') });
             });

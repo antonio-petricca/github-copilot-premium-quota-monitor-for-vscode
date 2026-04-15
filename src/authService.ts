@@ -185,6 +185,7 @@ export class AuthService {
 
     private async fetchUsername(token: string): Promise<string | undefined> {
         return new Promise(resolve => {
+            let res: import('http').IncomingMessage | undefined;
             const req = https.request(USER_API_URL, {
                 method: 'GET',
                 headers: {
@@ -193,13 +194,14 @@ export class AuthService {
                     'User-Agent':  'github-copilot-quota-monitor-vscode/1.0',
                     'Connection':  'close',
                 },
-            }, res => {
+            }, incoming => {
+                res = incoming;
                 let data = '';
                 res.on('data', chunk => { data += chunk; });
                 res.on('error', () => resolve(undefined));
                 res.on('end', () => {
                     try {
-                        if (res.statusCode === 200) {
+                        if (res!.statusCode === 200) {
                             resolve((JSON.parse(data) as Record<string, unknown>)['login'] as string | undefined);
                         } else {
                             resolve(undefined);
@@ -210,7 +212,7 @@ export class AuthService {
                 });
             });
             req.on('error', () => resolve(undefined));
-            req.setTimeout(10_000, () => { req.destroy(); resolve(undefined); });
+            req.setTimeout(10_000, () => { res?.destroy(); req.destroy(); resolve(undefined); });
             req.end();
         });
     }
@@ -231,12 +233,14 @@ export class AuthService {
                 },
             };
 
-            const req = https.request(options, res => {
+            let res: import('http').IncomingMessage | undefined;
+            const req = https.request(options, incoming => {
+                res = incoming;
                 let data = '';
                 res.on('data', chunk => { data += chunk; });
                 res.on('error', reject);
                 res.on('end', () => {
-                    const code = res.statusCode ?? 0;
+                    const code = res!.statusCode ?? 0;
                     if (code < 200 || code >= 300) {
                         reject(new Error(tf('auth_device_code_http_error', code)));
                         return;
@@ -247,7 +251,7 @@ export class AuthService {
             });
 
             req.on('error', reject);
-            req.setTimeout(10_000, () => { req.destroy(); reject(new Error(t('general_network_error'))); });
+            req.setTimeout(10_000, () => { res?.destroy(); req.destroy(); reject(new Error(t('general_network_error'))); });
             req.write(body);
             req.end();
         });
