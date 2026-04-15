@@ -54,6 +54,7 @@ const EN: Bundle = {
 
     statusbar_action_refresh: 'Refresh',
     statusbar_action_settings: 'Open Settings…',
+    statusbar_action_manage_copilot: 'Open GitHub Copilot Dashboard',
     statusbar_action_signin: 'Sign in with GitHub',
     statusbar_action_signout: 'Sign Out',
     statusbar_signout_complete: 'Signed out.',
@@ -108,6 +109,7 @@ const DE: Bundle = {
 
     statusbar_action_refresh: 'Aktualisieren',
     statusbar_action_settings: 'Einstellungen…',
+    statusbar_action_manage_copilot: 'GitHub Copilot-Dashboard öffnen',
     statusbar_action_signin: 'Mit GitHub anmelden',
     statusbar_action_signout: 'Abmelden',
     statusbar_signout_complete: 'Abgemeldet.',
@@ -162,6 +164,7 @@ const ES: Bundle = {
 
     statusbar_action_refresh: 'Actualizar',
     statusbar_action_settings: 'Configuración…',
+    statusbar_action_manage_copilot: 'Abrir panel de GitHub Copilot',
     statusbar_action_signin: 'Iniciar sesión con GitHub',
     statusbar_action_signout: 'Cerrar sesión',
     statusbar_signout_complete: 'Sesión cerrada.',
@@ -216,6 +219,7 @@ const FR: Bundle = {
 
     statusbar_action_refresh: 'Actualiser',
     statusbar_action_settings: 'Paramètres…',
+    statusbar_action_manage_copilot: 'Ouvrir le tableau de bord GitHub Copilot',
     statusbar_action_signin: 'Se connecter avec GitHub',
     statusbar_action_signout: 'Se déconnecter',
     statusbar_signout_complete: 'Déconnecté.',
@@ -270,6 +274,7 @@ const IT: Bundle = {
 
     statusbar_action_refresh: 'Aggiorna',
     statusbar_action_settings: 'Impostazioni…',
+    statusbar_action_manage_copilot: 'Apri la dashboard di GitHub Copilot',
     statusbar_action_signin: 'Accedi con GitHub',
     statusbar_action_signout: 'Disconnetti',
     statusbar_signout_complete: 'Disconnesso.',
@@ -324,6 +329,7 @@ const JA: Bundle = {
 
     statusbar_action_refresh: '更新',
     statusbar_action_settings: '設定…',
+    statusbar_action_manage_copilot: 'GitHub Copilot ダッシュボードを開く',
     statusbar_action_signin: 'GitHub でサインイン',
     statusbar_action_signout: 'サインアウト',
     statusbar_signout_complete: 'サインアウトしました。',
@@ -378,6 +384,7 @@ const PT: Bundle = {
 
     statusbar_action_refresh: 'Atualizar',
     statusbar_action_settings: 'Configurações…',
+    statusbar_action_manage_copilot: 'Abrir painel do GitHub Copilot',
     statusbar_action_signin: 'Entrar com o GitHub',
     statusbar_action_signout: 'Sair',
     statusbar_signout_complete: 'Desconectado.',
@@ -432,6 +439,7 @@ const RU: Bundle = {
 
     statusbar_action_refresh: 'Обновить',
     statusbar_action_settings: 'Настройки…',
+    statusbar_action_manage_copilot: 'Открыть панель GitHub Copilot',
     statusbar_action_signin: 'Войти через GitHub',
     statusbar_action_signout: 'Выйти',
     statusbar_signout_complete: 'Выход выполнен.',
@@ -486,6 +494,7 @@ const SQ: Bundle = {
 
     statusbar_action_refresh: 'Rifresko',
     statusbar_action_settings: 'Cilësimet…',
+    statusbar_action_manage_copilot: 'Hap panelin e GitHub Copilot',
     statusbar_action_signin: 'Identifikohu me GitHub',
     statusbar_action_signout: 'Çkyçu',
     statusbar_signout_complete: 'U çkyç.',
@@ -540,6 +549,7 @@ const TR: Bundle = {
 
     statusbar_action_refresh: 'Yenile',
     statusbar_action_settings: 'Ayarlar…',
+    statusbar_action_manage_copilot: 'GitHub Copilot Panosunu Aç',
     statusbar_action_signin: 'GitHub ile oturum aç',
     statusbar_action_signout: 'Çıkış Yap',
     statusbar_signout_complete: 'Çıkış yapıldı.',
@@ -594,6 +604,7 @@ const ZH: Bundle = {
 
     statusbar_action_refresh: '刷新',
     statusbar_action_settings: '设置…',
+    statusbar_action_manage_copilot: '打开 GitHub Copilot 仓库',
     statusbar_action_signin: '使用 GitHub 登录',
     statusbar_action_signout: '登出',
     statusbar_signout_complete: '已登出。',

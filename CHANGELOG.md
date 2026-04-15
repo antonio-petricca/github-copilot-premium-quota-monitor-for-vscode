@@ -3,6 +3,7 @@
 
 ## [1.0.5]
 
+- Added "Open GitHub Copilot Dashboard" menu action that opens `https://github.com/settings/copilot` in the browser, placed just before Sign in/out. Translated in all supported languages.
 - Fixed HTTP connections not explicitly closed: added `Connection: close` header and `res.on('error')` handler to all HTTPS requests.
 - Fixed missing `"types": ["node"]` in `tsconfig.json` that caused spurious TypeScript errors on Node.js built-in modules.
 - Fixed potential response stream leak: `IncomingMessage` is now explicitly destroyed on request timeout.

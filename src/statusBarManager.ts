@@ -35,7 +35,7 @@ const BLINK_STEP_MS = 400;
 const BLINK_STEPS = 3;
 const BLINK_DARK_GRAY = '#555555';
 
-type MenuAction = 'refresh' | 'settings' | 'signIn' | 'signOut';
+type MenuAction = 'refresh' | 'settings' | 'manageCopilot' | 'signIn' | 'signOut';
 type ActionQuickPickItem = vscode.QuickPickItem & { action: MenuAction };
 
 export class StatusBarManager {
@@ -253,6 +253,7 @@ export class StatusBarManager {
         const items: Array<ActionQuickPickItem | vscode.QuickPickItem> = [
             { label: '$(refresh) ' + t('statusbar_action_refresh'), action: 'refresh' },
             { label: '$(gear) ' + t('statusbar_action_settings'), action: 'settings' },
+            { label: '$(link-external) ' + t('statusbar_action_manage_copilot'), action: 'manageCopilot' },
             { kind: vscode.QuickPickItemKind.Separator, label: '' },
             isSignedIn
                 ? { label: '$(sign-out) ' + t('statusbar_action_signout'), action: 'signOut' }
@@ -270,6 +271,9 @@ export class StatusBarManager {
                 break;
             case 'settings':
                 vscode.commands.executeCommand('workbench.action.openSettings', 'ghcpPremiumQuotaMonitor');
+                break;
+            case 'manageCopilot':
+                vscode.env.openExternal(vscode.Uri.parse('https://github.com/settings/copilot'));
                 break;
             case 'signIn':
                 this.signIn();
