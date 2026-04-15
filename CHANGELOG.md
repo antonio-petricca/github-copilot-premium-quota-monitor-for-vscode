@@ -1,6 +1,10 @@
 
 # Changelog
 
+## [1.0.5]
+
+- Fixed HTTP connections not explicitly closed: added `Connection: close` header and `res.on('error')` handler to all HTTPS requests.
+
 ## [1.0.4]
 
 - The widget unlimited quota string in all languages now shows only the infinity symbol (∞).

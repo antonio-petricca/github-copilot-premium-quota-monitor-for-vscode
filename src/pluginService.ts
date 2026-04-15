@@ -84,14 +84,18 @@ export class PluginService {
             const req = https.request(COPILOT_USER_API_URL, {
                 method: 'GET',
                 headers: {
-                    Authorization:          `token ${token}`,
-                    Accept:                 'application/json',
-                    'User-Agent':           'github-copilot-quota-monitor-vscode/1.0',
+                    Authorization:            `token ${token}`,
+                    Accept:                   'application/json',
+                    'User-Agent':             'github-copilot-quota-monitor-vscode/1.0',
                     'Copilot-Integration-Id': 'vscode',
+                    'Connection':             'close',
                 },
             }, res => {
                 let data = '';
                 res.on('data', chunk => { data += chunk; });
+                res.on('error', (e: Error) => {
+                    resolve({ kind: 'error', message: e.message ?? t('general_network_error') });
+                });
                 res.on('end', () => {
                     const code = res.statusCode ?? 0;
                     if (code === 200) {

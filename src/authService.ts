@@ -191,10 +191,12 @@ export class AuthService {
                     Authorization: `Bearer ${token}`,
                     Accept:        'application/vnd.github+json',
                     'User-Agent':  'github-copilot-quota-monitor-vscode/1.0',
+                    'Connection':  'close',
                 },
             }, res => {
                 let data = '';
                 res.on('data', chunk => { data += chunk; });
+                res.on('error', () => resolve(undefined));
                 res.on('end', () => {
                     try {
                         if (res.statusCode === 200) {
@@ -225,12 +227,14 @@ export class AuthService {
                     'Content-Type':   'application/x-www-form-urlencoded',
                     'Accept':         'application/json',
                     'Content-Length': Buffer.byteLength(body),
+                    'Connection':     'close',
                 },
             };
 
             const req = https.request(options, res => {
                 let data = '';
                 res.on('data', chunk => { data += chunk; });
+                res.on('error', reject);
                 res.on('end', () => {
                     const code = res.statusCode ?? 0;
                     if (code < 200 || code >= 300) {
